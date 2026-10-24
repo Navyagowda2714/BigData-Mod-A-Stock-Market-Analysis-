@@ -20,6 +20,7 @@ src="https://capsule-render.vercel.app/api?type=waving&color=0:070A12,45:1E3A8A,
 
 <br/><br/>
 
+<a href="#-quickstart"><b>Quickstart</b></a> •
 <a href="#-project-overview"><b>Overview</b></a> •
 <a href="#-financial-problem"><b>Problem</b></a> •
 <a href="#-creative-workflow"><b>Workflow</b></a> •
@@ -28,6 +29,46 @@ src="https://capsule-render.vercel.app/api?type=waving&color=0:070A12,45:1E3A8A,
 <a href="#-contact"><b>Contact</b></a>
 
 </div>
+
+---
+
+
+<!-- quickstart:start -->
+# 🚀 Quickstart
+
+[![notebooks](https://github.com/Navyagowda2714/BigData-Mod-A-Stock-Market-Analysis-/actions/workflows/notebooks.yml/badge.svg)](https://github.com/Navyagowda2714/BigData-Mod-A-Stock-Market-Analysis-/actions/workflows/notebooks.yml)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Navyagowda2714/BigData-Mod-A-Stock-Market-Analysis-/blob/main/BIGDATA%20Mod%20A.ipynb)
+
+**Requirements:** Python 3.10+, Java 11+ (for PySpark) and a Kafka broker for the streaming part. Stock data is downloaded live from Yahoo Finance, so no dataset is needed.
+
+```bash
+git clone https://github.com/Navyagowda2714/BigData-Mod-A-Stock-Market-Analysis-.git
+cd BigData-Mod-A-Stock-Market-Analysis-
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+jupyter notebook "BIGDATA Mod A.ipynb"      # batch analysis + modelling
+```
+
+**Streaming pipeline (Kafka → consumer notebook)**
+
+```bash
+# 1. start a local Kafka broker (Docker)
+docker run -d --name kafka -p 9092:9092 apache/kafka:3.7.0
+# 2. publish weekly prices for ~40 tickers to the yfData topic
+python kafka_producer.py --bootstrap localhost:9092 --topic yfData
+# 3. read and analyse the stream
+jupyter notebook KafkaConsumer.ipynb
+```
+
+| File | What it is |
+|---|---|
+| `BIGDATA Mod A.ipynb` | Main analysis: PySpark processing, technical indicators, correlation network, forecasting |
+| `kafka_producer.py` | Streams Yahoo Finance data into Kafka |
+| `KafkaConsumer.ipynb` | Consumes the topic and analyses incoming prices |
+| `stock_bigdata.pdf` | Project report |
+
+CI checks on every push that each notebook is valid and contains no Python syntax errors.
+<!-- quickstart:end -->
 
 ---
 

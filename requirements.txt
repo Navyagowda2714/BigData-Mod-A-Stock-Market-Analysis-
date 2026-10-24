@@ -1,0 +1,13 @@
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+networkx
+yfinance
+kafka-python
+pyspark
+tensorflow
+jupyter
+# TA-Lib needs the C library first: https://ta-lib.github.io/ta-lib-python/install.html
+# TA-Lib
